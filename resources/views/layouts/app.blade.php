@@ -12,6 +12,7 @@
 
     <!-- Styles -->
     <link href="/css/app.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href=" {{ asset('css/toastr.min.css') }} ">
 
     <!-- Scripts -->
     <script>
@@ -84,7 +85,13 @@
              <div class="col col-lg-4">
               <ul class="list-group">
                 <li class="list-group-item">
-                  <a href="/home">Home</a>
+                  <a href=" {{ route('admin.home')}} ">Home</a>
+                </li>
+                <li class="list-group-item">
+                  <a href=" {{ route('categories')}} ">Categories</a>
+                </li>
+                <li class="list-group-item">
+                  <a href="{{ route('category.create')}}">Create a category</a>
                 </li>
                 <li class="list-group-item">
                   <a href="{{ route('post.create')}}">Create a post</a>
@@ -102,5 +109,12 @@
 
     <!-- Scripts -->
     <script src="/js/app.js"></script>
+    <script type="text/javascript" src=" {{ asset('js/toastr.min.js') }} "></script>
+
+    <script>
+        @if(Session::has('success'))
+            toastr.success("{{ Session::get('success') }}")
+        @endif
+    </script>
 </body>
 </html>
