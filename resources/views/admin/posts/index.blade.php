@@ -7,7 +7,10 @@
 			<table class="table table-hover">
 		        <thead>
 			        <th>
-				        Category name
+				        Image
+			        </th>
+			        <th>
+			        	Title
 			        </th>
 			        <th>
 				        Edit
@@ -17,19 +20,22 @@
 			        </th>
 		        </thead>
 		        <tbody>
-			        @foreach($categories as $category)
+			        @foreach($posts as $post)
 			        <tr>
 				        <td>
-					        {{ $category->name }}
+					       <img src="{{ $post->featured }}" style="width:40px; height:40px;" alt="{{ $post->title }}">
 				        </td>
 				        <td>
-				        	<a href="{{ route('category.edit', ['id'=>$category->id])}}" class="btn btn-xs btn-info">
+				        	{{ $post->title }}
+				        </td>
+				        <td>
+				        	<a href="{{ route('post.edit', ['id'=>$post->id])}}" class="btn btn-xs btn-info">
 				        		Edit
 				        	</a>
 				        </td>
 				        <td>
-				        	<a href="{{ route('category.delete', ['id'=>$category->id ])}}" class="btn btn-xs btn-danger">
-				        		Delete
+				        	<a href="{{ route('post.delete', ['id'=>$post->id ])}}" class="btn btn-xs btn-danger">
+				        		Trash
 				        	</a>
 				        </td>
 			        </tr>

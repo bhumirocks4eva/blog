@@ -25,6 +25,11 @@ Route::group(['prefix'=>'admin', 'middleware'=>'auth'], function(){
       	'as'=>'admin.home'
       ]);
 
+      Route::get('/posts',[
+                  'uses'=>'PostsController@index',
+                  'as'=>'posts'
+      ]);
+
       Route::get('/post/create',[
   	      'uses'=>'PostsController@create',
   	      'as'=>'post.create'
@@ -33,6 +38,36 @@ Route::group(['prefix'=>'admin', 'middleware'=>'auth'], function(){
       Route::post('/post/save',[
 	      'uses'=>'PostsController@store',
 	      'as'=>'post.save'
+      ]);
+
+      Route::get('/post/edit/{id} ',[
+            'uses'=>'PostsController@edit',
+            'as'=>'post.edit'
+      ]);
+
+      Route::post('/post/update/{id} ',[
+            'uses'=>'PostsController@update',
+            'as'=>'post.update'
+      ]);
+
+      Route::get('/post/delete/{id}',[
+                  'uses'=>'PostsController@destroy',
+                  'as'=>'post.delete'
+      ]);
+
+      Route::get('/posts/trashed',[
+                  'uses'=>'PostsController@trashed',
+                  'as'=>'posts.trashed'
+      ]);
+
+      Route::get('/posts/kill/{id}',[
+                  'uses'=>'PostsController@kill',
+                  'as'=>'post.kill'
+      ]);
+
+      Route::get('/posts/restore/{id}',[
+                  'uses'=>'PostsController@restore',
+                  'as'=>'post.restore'
       ]);
 
       Route::get('/category/create',[
@@ -60,7 +95,7 @@ Route::group(['prefix'=>'admin', 'middleware'=>'auth'], function(){
       		'as'=>'category.update'
       ]);
 
-      Route::get('category/delete/{id}',[
+      Route::get('/category/delete/{id}',[
       		'uses'=>'CategoriesController@destroy',
       		'as'=>'category.delete'
       ]);
