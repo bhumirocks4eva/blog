@@ -2,7 +2,10 @@
 
 @section('content')
 	
-	<div class="panel panel-defailt">
+	<div class="panel panel-default">
+		<div class="panel-heading">
+				<h4 class="text-center">Categories</h4>
+		</div>
 		<div class="panel-body">
 			<table class="table table-hover">
 		        <thead>
@@ -17,6 +20,7 @@
 			        </th>
 		        </thead>
 		        <tbody>
+		          @if($categories->count() > 0)
 			        @foreach($categories as $category)
 			        <tr>
 				        <td>
@@ -34,6 +38,13 @@
 				        </td>
 			        </tr>
 			        @endforeach
+			      @else
+			      	<tr>
+			      		<th colspan="3" class="text-center">
+			      			No Categories yet.
+			      		</th>
+			      	</tr>
+			      @endif
 		        </tbody>
 	        </table>
 		</div>
