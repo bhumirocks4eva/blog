@@ -6,7 +6,7 @@
 	
 	<div class="panel panel-default">
 		<div class="panel-heading">
-			Create a new Category
+			<h4 class="text-center">Create a new Category</h4>
 		</div>
 		<div class="panel-body">
 			<form action="{{ route('category.save')}}" method="post">

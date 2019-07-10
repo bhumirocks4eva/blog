@@ -2,7 +2,10 @@
 
 @section('content')
 	
-	<div class="panel panel-defailt">
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<h4 class="text-center">Trashed posts</h4>
+		</div>
 		<div class="panel-body">
 			<table class="table table-hover">
 		        <thead>
@@ -23,7 +26,8 @@
 			        </th>
 		        </thead>
 		        <tbody>
-			        @foreach($posts as $post)
+			      @if($posts->count() > 0 )
+					@foreach($posts as $post)
 			        <tr>
 				        <td>
 					       <img src="{{ $post->featured }}" style="width:40px; height:40px;" alt="{{ $post->title }}">
@@ -47,7 +51,14 @@
 				        	</a>
 				        </td>
 			        </tr>
-			        @endforeach
+			        @endforeach		
+			      @else
+					<tr>
+						<th colspan="5" class="text-center">
+							No Trashed posts
+						</th>
+					</tr>
+			      @endif
 		        </tbody>
 	        </table>
 		</div>

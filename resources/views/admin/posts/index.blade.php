@@ -2,7 +2,10 @@
 
 @section('content')
 	
-	<div class="panel panel-defailt">
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<h4 class="text-center">Published posts</h4>
+		</div>
 		<div class="panel-body">
 			<table class="table table-hover">
 		        <thead>
@@ -20,6 +23,7 @@
 			        </th>
 		        </thead>
 		        <tbody>
+		          @if($posts->count() > 0)
 			        @foreach($posts as $post)
 			        <tr>
 				        <td>
@@ -40,6 +44,13 @@
 				        </td>
 			        </tr>
 			        @endforeach
+			       @else
+			       	<tr>
+			       		<th colspan="4" class="text-center">
+			       			No published posts yet.
+			       		</th>
+			       	</tr>
+			       @endif
 		        </tbody>
 	        </table>
 		</div>

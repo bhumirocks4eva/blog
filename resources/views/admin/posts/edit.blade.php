@@ -5,7 +5,7 @@
 
 	<div class="panel panel-default">
 		<div class="panel-heading">
-			Edit <b>{{$post->title}}</b>
+			<h4 class="text-center">Edit <mark>{{$post->title}}</mark></h4>
 		</div>
 		<div class="panel-body">
 			<form action="{{ route('post.update',['id'=>$post->id])}}" method="post" enctype="multipart/form-data">
