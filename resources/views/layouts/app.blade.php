@@ -14,6 +14,8 @@
     <link href="/css/app.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href=" {{ asset('css/toastr.min.css') }} ">
 
+    @yield('styles')
+
     <!-- Scripts -->
     <script>
         window.Laravel = <?php echo json_encode([
@@ -61,6 +63,9 @@
 
                                 <ul class="dropdown-menu" role="menu">
                                     <li>
+                                        <a href="{{ route('user.profile') }}">
+                                            My Profile
+                                        </a>
                                         <a href="{{ url('/logout') }}"
                                             onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
@@ -85,7 +90,7 @@
              <div class="col col-lg-4">
               <ul class="list-group">
                 <li class="list-group-item">
-                  <a href=" {{ route('admin.home')}} ">Home</a>
+                  <a href=" {{ route('admin.dashboard')}} ">Home</a>
                 </li>
                 <li class="list-group-item">
                   <a href=" {{ route('categories')}} ">Categories</a>
@@ -108,6 +113,19 @@
                 <li class="list-group-item">
                     <a href="{{ route('tag.create') }}">Create a Tag</a>
                 </li>
+                @if(Auth::user()->admin)
+                <li class="list-group-item">
+                    <a href="{{ route('users') }}">Users</a>
+                </li>
+                <li class="list-group-item">
+                    <a href="{{ route('user.create') }}">New User</a>
+                </li>
+                @endif
+                @if(Auth::user()->admin)
+                <li class="list-group-item">
+                    <a href="{{ route('settings') }}">Settings</a>
+                </li>
+                @endif
               </ul>
             </div>
            @endif
@@ -132,5 +150,7 @@
             toastr.info("{{ Session::get('info') }}")
         @endif
     </script>
+
+    @yield('scripts')
 </body>
 </html>

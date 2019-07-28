@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Auth;
 use App\Post;
 use App\Category;
 use App\Tag;
@@ -31,12 +32,16 @@ class PostsController extends Controller
     {
         //
         $categories = Category::all();
+        $tags = Tag::all();
 
         if($categories->count() == 0){
             Session::flash('info','You must have a category to create a post.');
             return redirect()->route('category.create');
+        }elseif($tags->count() == 0){
+            Session::flash('info','You must have a tag to create a post.');
+            return redirect()->route('tag.create');
         }
-        return view('admin.posts.create')->with('categories', $categories)->with('tags',Tag::all());
+        return view('admin.posts.create')->with('categories', $categories)->with('tags', $tags);
     }
 
     /**
@@ -66,7 +71,8 @@ class PostsController extends Controller
             'content' => $request->content,
             'category_id' => $request->category_id,
             'featured' => 'uploads/posts/'.$featured_new_name,
-            'slug' => str_slug($request->title)
+            'slug' => str_slug($request->title),
+            'user_id' => Auth::id()
         ]);
 
         $post->tags()->attach($request->tags);
